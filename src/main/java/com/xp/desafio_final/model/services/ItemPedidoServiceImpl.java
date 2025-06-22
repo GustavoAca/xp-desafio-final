@@ -17,7 +17,7 @@ public class ItemPedidoServiceImpl extends AbstractService<ItemPedido, Long, Ite
     @Autowired
     public ItemPedidoServiceImpl(ItemPedidoRepository repo, ProdutoService produtoService) {
         super(repo);
-        this.produtoService = produtoService;
+        this.produtoService = produtoService; 
     }
 
     @Override
