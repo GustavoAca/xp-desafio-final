@@ -1,5 +1,6 @@
 package com.xp.desafio_final.controller;
 
+import com.xp.desafio_final.controller.dto.AtualizarPedidoRequest;
 import com.xp.desafio_final.controller.dto.CadastroPedidoRequest;
 import com.xp.desafio_final.model.domain.Pedido;
 import com.xp.desafio_final.model.services.PedidoService;
@@ -38,5 +39,10 @@ public class PedidoController {
     @PostMapping("/cadastrar")
     public Pedido cadastrar(@RequestBody CadastroPedidoRequest cadastroPedidoRequest){
         return pedidoService.cadastrar(cadastroPedidoRequest);
+    }
+
+    @PutMapping("/atualizar/{id}")
+    public Pedido atualizar(@PathVariable Long id, AtualizarPedidoRequest atualizarPedidoRequest) {
+        return pedidoService.atualizar(id, atualizarPedidoRequest);
     }
 }

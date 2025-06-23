@@ -1,5 +1,6 @@
 package com.xp.desafio_final.model.services;
 
+import com.xp.desafio_final.controller.dto.AtualizarPedidoRequest;
 import com.xp.desafio_final.controller.dto.CadastroPedidoRequest;
 import com.xp.desafio_final.controller.dto.ItemPedidoDto;
 import com.xp.desafio_final.core.domain.service.AbstractService;
@@ -29,7 +30,7 @@ public class PedidoServiceImpl extends AbstractService<Pedido, Long, PedidoRepos
     }
 
     public Pedido buscaPorId(Long id) {
-        return repo.findById(id).orElseThrow(() -> new RegistroNaoEncontradoException(id, Pedido.class.getName()));
+        return repo.findById(id).orElseThrow(() -> new RegistroNaoEncontradoException(id, Pedido.class.getSimpleName()));
     }
 
     @Override
@@ -52,5 +53,12 @@ public class PedidoServiceImpl extends AbstractService<Pedido, Long, PedidoRepos
         return itemPedidoDtos.stream()
                 .map(itemPedido -> itemPedidoService.cadastrar(itemPedido, pedido))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Pedido atualizar(Long id, AtualizarPedidoRequest atualizarPedidoRequest) {
+        var pedido = buscaPorId(id);
+        pedido.setCliente(Cliente.builder().id(atualizarPedidoRequest.clienteId()).build());
+        return pedido;
     }
 }

@@ -34,9 +34,7 @@ public class ProdutoServiceImpl extends AbstractService<Produto, Long, ProdutoRe
 
     @Override
     public Produto atualizar(Long id, AtualizarProdutoRequest atualizarProdutoRequest) {
-        var produto = repo.findById(id)
-                .orElseThrow(() -> new RegistroNaoEncontradoException(id, Produto.class.getName()));
-
+        var produto = buscaPorId(id);
         produto.setNome(atualizarProdutoRequest.nome());
         produto.setPreco(atualizarProdutoRequest.preco());
         produto.setEstoque(atualizarProdutoRequest.estoque());

@@ -30,7 +30,6 @@ public class ClienteServiceImpl extends AbstractService<Cliente, Long, ClienteRe
 
         return super.salvar(Cliente.builder()
                 .nome(cliente.nome())
-                .password(cliente.password())
                 .username(cliente.username())
                 .build());
     }
@@ -42,9 +41,7 @@ public class ClienteServiceImpl extends AbstractService<Cliente, Long, ClienteRe
 
         cliente.setNome(atualizarClienteRequest.nome());
         cliente.setUsername(atualizarClienteRequest.username());
-        cliente.setPassword(atualizarClienteRequest.password());
 
         return super.salvar(cliente);
     }
-
 }

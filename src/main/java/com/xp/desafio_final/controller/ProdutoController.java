@@ -31,7 +31,7 @@ public class ProdutoController {
         return produtoService.buscaPorId(id);
     }
 
-    @GetMapping("/total")
+    @GetMapping("/count")
     public long buscarTotalDeProdutos() {
         return produtoService.count();
     }
